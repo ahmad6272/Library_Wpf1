@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище LibraryModelContainer" CdmEntityContainer="LibraryEntities">
+    <EntitySetMapping Name="Authors">
+      <EntityTypeMapping TypeName="LibraryModel.Authors">
+        <MappingFragment StoreEntitySet="Authors">
+          <ScalarProperty Name="Author_Patronymic" ColumnName="Author_Patronymic" />
+          <ScalarProperty Name="Author_Surname" ColumnName="Author_Surname" />
+          <ScalarProperty Name="Author_Name" ColumnName="Author_Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book_Genres">
+      <EntityTypeMapping TypeName="LibraryModel.Book_Genres">
+        <MappingFragment StoreEntitySet="Book_Genres">
+          <ScalarProperty Name="Is_Deleted" ColumnName="Is_Deleted" />
+          <ScalarProperty Name="Genre_Name" ColumnName="Genre_Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="LibraryModel.Books">
+        <MappingFragment StoreEntitySet="Books">
+          <ScalarProperty Name="Genre_Id" ColumnName="Genre_Id" />
+          <ScalarProperty Name="Book_Deposit" ColumnName="Book_Deposit" />
+          <ScalarProperty Name="Book_Price" ColumnName="Book_Price" />
+          <ScalarProperty Name="Book_Amount" ColumnName="Book_Amount" />
+          <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Clients">
+      <EntityTypeMapping TypeName="LibraryModel.Clients">
+        <MappingFragment StoreEntitySet="Clients">
+          <ScalarProperty Name="Client_Email" ColumnName="Client_Email" />
+          <ScalarProperty Name="CLient_Patronymic" ColumnName="CLient_Patronymic" />
+          <ScalarProperty Name="Client_Surname" ColumnName="Client_Surname" />
+          <ScalarProperty Name="Client_Name" ColumnName="Client_Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Collected_Works">
+      <EntityTypeMapping TypeName="LibraryModel.Collected_Works">
+        <MappingFragment StoreEntitySet="Collected_Works">
+          <ScalarProperty Name="Author_ID" ColumnName="Author_ID" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inquires">
+      <EntityTypeMapping TypeName="LibraryModel.Inquires">
+        <MappingFragment StoreEntitySet="Inquires">
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="LibraryModel.Orders">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="Seller_Comment" ColumnName="Seller_Comment" />
+          <ScalarProperty Name="Deposit_Sum" ColumnName="Deposit_Sum" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+          <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Seller_ID" ColumnName="Seller_ID" />
+          <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sellers">
+      <EntityTypeMapping TypeName="LibraryModel.Sellers">
+        <MappingFragment StoreEntitySet="Sellers">
+          <ScalarProperty Name="Is_Deleted" ColumnName="Is_Deleted" />
+          <ScalarProperty Name="Is_Activated" ColumnName="Is_Activated" />
+          <ScalarProperty Name="Is_Admin" ColumnName="Is_Admin" />
+          <ScalarProperty Name="Seller_Password" ColumnName="Seller_Password" />
+          <ScalarProperty Name="Seller_Email" ColumnName="Seller_Email" />
+          <ScalarProperty Name="Seller_Patronymic" ColumnName="Seller_Patronymic" />
+          <ScalarProperty Name="Seller_Surname" ColumnName="Seller_Surname" />
+          <ScalarProperty Name="Seller_Name" ColumnName="Seller_Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

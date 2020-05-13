@@ -1,0 +1,36 @@
+﻿<Window x:Class="Library.Login_List"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Login_List" Height="451.845" Width="433.753">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Полка.jpg"/>
+        </Grid.Background>
+        <TextBox x:Name="txt_Login_UserName" HorizontalAlignment="Left" Height="37" Margin="76,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="276" RenderTransformOrigin="0.5,0.5" FontSize="20" FontFamily="Bradley Hand ITC">
+            <TextBox.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="0.023"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </TextBox.RenderTransform>
+        </TextBox>
+        <PasswordBox x:Name="txt_Login_Password" HorizontalAlignment="Left" Margin="76,225,0,0" VerticalAlignment="Top" Width="276"  FontSize="20"/>
+        <Label Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,44,0,0" FontSize="28" FontFamily="Bradley Hand ITC" FontWeight="ExtraBold"/>
+        <Label Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="44,177,0,0" FontSize="28" FontFamily="Bradley Hand ITC" FontWeight="ExtraBold"/>
+        <Button x:Name="btn_Login_LoginList" Content="Log In" HorizontalAlignment="Left" Margin="52,323,0,0" VerticalAlignment="Top" Width="157" Height="41" FontSize="20" FontFamily="Bradley Hand ITC" Background="{x:Null}" BorderBrush="Black" Click="btn_Login_LoginList_Click"/>
+        <Button x:Name="btn_Registration_LogiList" Content="Registration" HorizontalAlignment="Left" Margin="226,323,0,0" VerticalAlignment="Top" Width="152" Height="41" FontSize="20" FontFamily="Bradley Hand ITC" Click="Button_Click" Background="{x:Null}" BorderBrush="Black"/>
+    </Grid>
+</Window>

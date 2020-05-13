@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище LibraryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Author_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Author_Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Author_Patronymic" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Book_Genres">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Genre_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Is_Deleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Book_Amount" Type="int" />
+          <Property Name="Book_Price" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Book_Deposit" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Genre_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Client_Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="CLient_Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="Client_Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Collected_Works">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_ID" Type="int" />
+          <Property Name="Author_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Inquires">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Book_ID" Type="int" />
+          <Property Name="Order_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Client_ID" Type="int" />
+          <Property Name="Seller_ID" Type="int" />
+          <Property Name="Order_Date" Type="date" />
+          <Property Name="Return_Date" Type="date" />
+          <Property Name="Total_Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Deposit_Sum" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Seller_Comment" Type="text" />
+        </EntityType>
+        <EntityType Name="Sellers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Seller_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Seller_Surname" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Seller_Patronymic" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Seller_Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Seller_Password" Type="nvarchar" MaxLength="255" />
+          <Property Name="Is_Admin" Type="bit" Nullable="false" />
+          <Property Name="Is_Activated" Type="bit" Nullable="false" />
+          <Property Name="Is_Deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Books__Genre_Id__2180FB33">
+          <End Role="Book_Genres" Type="Self.Book_Genres" Multiplicity="0..1" />
+          <End Role="Books" Type="Self.Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_Genres">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Genre_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collected__Autho__25518C17">
+          <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
+          <End Role="Collected_Works" Type="Self.Collected_Works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Collected_Works">
+              <PropertyRef Name="Author_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collected__Book___245D67DE">
+          <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+          <End Role="Collected_Works" Type="Self.Collected_Works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Collected_Works">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inquires__Book_I__2BFE89A6">
+          <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
+          <End Role="Inquires" Type="Self.Inquires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inquires">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inquires__Order___2CF2ADDF">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
+          <End Role="Inquires" Type="Self.Inquires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inquires">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Client_I__282DF8C2">
+          <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Client_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Seller_I__29221CFB">
+          <End Role="Sellers" Type="Self.Sellers" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sellers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Seller_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LibraryModelContainer">
+          <EntitySet Name="Authors" EntityType="Self.Authors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Book_Genres" EntityType="Self.Book_Genres" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Collected_Works" EntityType="Self.Collected_Works" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inquires" EntityType="Self.Inquires" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sellers" EntityType="Self.Sellers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Books__Genre_Id__2180FB33" Association="Self.FK__Books__Genre_Id__2180FB33">
+            <End Role="Book_Genres" EntitySet="Book_Genres" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collected__Autho__25518C17" Association="Self.FK__Collected__Autho__25518C17">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Collected_Works" EntitySet="Collected_Works" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collected__Book___245D67DE" Association="Self.FK__Collected__Book___245D67DE">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Collected_Works" EntitySet="Collected_Works" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inquires__Book_I__2BFE89A6" Association="Self.FK__Inquires__Book_I__2BFE89A6">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Inquires" EntitySet="Inquires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inquires__Order___2CF2ADDF" Association="Self.FK__Inquires__Order___2CF2ADDF">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Inquires" EntitySet="Inquires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Client_I__282DF8C2" Association="Self.FK__Orders__Client_I__282DF8C2">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Seller_I__29221CFB" Association="Self.FK__Orders__Seller_I__29221CFB">
+            <End Role="Sellers" EntitySet="Sellers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LibraryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="LibraryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Authors" EntityType="LibraryModel.Authors" />
+          <EntitySet Name="Book_Genres" EntityType="LibraryModel.Book_Genres" />
+          <EntitySet Name="Books" EntityType="LibraryModel.Books" />
+          <EntitySet Name="Clients" EntityType="LibraryModel.Clients" />
+          <EntitySet Name="Collected_Works" EntityType="LibraryModel.Collected_Works" />
+          <EntitySet Name="Inquires" EntityType="LibraryModel.Inquires" />
+          <EntitySet Name="Orders" EntityType="LibraryModel.Orders" />
+          <EntitySet Name="Sellers" EntityType="LibraryModel.Sellers" />
+          <AssociationSet Name="FK__Collected__Autho__25518C17" Association="LibraryModel.FK__Collected__Autho__25518C17">
+            <End Role="Authors" EntitySet="Authors" />
+            <End Role="Collected_Works" EntitySet="Collected_Works" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Books__Genre_Id__2180FB33" Association="LibraryModel.FK__Books__Genre_Id__2180FB33">
+            <End Role="Book_Genres" EntitySet="Book_Genres" />
+            <End Role="Books" EntitySet="Books" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Collected__Book___245D67DE" Association="LibraryModel.FK__Collected__Book___245D67DE">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Collected_Works" EntitySet="Collected_Works" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inquires__Book_I__2BFE89A6" Association="LibraryModel.FK__Inquires__Book_I__2BFE89A6">
+            <End Role="Books" EntitySet="Books" />
+            <End Role="Inquires" EntitySet="Inquires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Client_I__282DF8C2" Association="LibraryModel.FK__Orders__Client_I__282DF8C2">
+            <End Role="Clients" EntitySet="Clients" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Inquires__Order___2CF2ADDF" Association="LibraryModel.FK__Inquires__Order___2CF2ADDF">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="Inquires" EntitySet="Inquires" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Orders__Seller_I__29221CFB" Association="LibraryModel.FK__Orders__Seller_I__29221CFB">
+            <End Role="Sellers" EntitySet="Sellers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Authors">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Author_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Author_Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Author_Patronymic" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Collected_Works" Relationship="LibraryModel.FK__Collected__Autho__25518C17" FromRole="Authors" ToRole="Collected_Works" />
+        </EntityType>
+        <EntityType Name="Book_Genres">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Genre_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Deleted" Type="Boolean" />
+          <NavigationProperty Name="Books" Relationship="LibraryModel.FK__Books__Genre_Id__2180FB33" FromRole="Book_Genres" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Books">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Book_Amount" Type="Int32" />
+          <Property Name="Book_Price" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="Book_Deposit" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Genre_Id" Type="Int32" />
+          <NavigationProperty Name="Book_Genres" Relationship="LibraryModel.FK__Books__Genre_Id__2180FB33" FromRole="Books" ToRole="Book_Genres" />
+          <NavigationProperty Name="Collected_Works" Relationship="LibraryModel.FK__Collected__Book___245D67DE" FromRole="Books" ToRole="Collected_Works" />
+          <NavigationProperty Name="Inquires" Relationship="LibraryModel.FK__Inquires__Book_I__2BFE89A6" FromRole="Books" ToRole="Inquires" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Client_Surname" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CLient_Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Client_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Orders" Relationship="LibraryModel.FK__Orders__Client_I__282DF8C2" FromRole="Clients" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Collected_Works">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_ID" Type="Int32" />
+          <Property Name="Author_ID" Type="Int32" />
+          <NavigationProperty Name="Authors" Relationship="LibraryModel.FK__Collected__Autho__25518C17" FromRole="Collected_Works" ToRole="Authors" />
+          <NavigationProperty Name="Books" Relationship="LibraryModel.FK__Collected__Book___245D67DE" FromRole="Collected_Works" ToRole="Books" />
+        </EntityType>
+        <EntityType Name="Inquires">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Book_ID" Type="Int32" />
+          <Property Name="Order_ID" Type="Int32" />
+          <NavigationProperty Name="Books" Relationship="LibraryModel.FK__Inquires__Book_I__2BFE89A6" FromRole="Inquires" ToRole="Books" />
+          <NavigationProperty Name="Orders" Relationship="LibraryModel.FK__Inquires__Order___2CF2ADDF" FromRole="Inquires" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Client_ID" Type="Int32" />
+          <Property Name="Seller_ID" Type="Int32" />
+          <Property Name="Order_Date" Type="DateTime" Precision="0" />
+          <Property Name="Return_Date" Type="DateTime" Precision="0" />
+          <Property Name="Total_Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Deposit_Sum" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Seller_Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Clients" Relationship="LibraryModel.FK__Orders__Client_I__282DF8C2" FromRole="Orders" ToRole="Clients" />
+          <NavigationProperty Name="Inquires" Relationship="LibraryModel.FK__Inquires__Order___2CF2ADDF" FromRole="Orders" ToRole="Inquires" />
+          <NavigationProperty Name="Sellers" Relationship="LibraryModel.FK__Orders__Seller_I__29221CFB" FromRole="Orders" ToRole="Sellers" />
+        </EntityType>
+        <EntityType Name="Sellers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Seller_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Seller_Surname" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Seller_Patronymic" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Seller_Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Seller_Password" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Is_Admin" Type="Boolean" Nullable="false" />
+          <Property Name="Is_Activated" Type="Boolean" Nullable="false" />
+          <Property Name="Is_Deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Orders" Relationship="LibraryModel.FK__Orders__Seller_I__29221CFB" FromRole="Sellers" ToRole="Orders" />
+        </EntityType>
+        <Association Name="FK__Collected__Autho__25518C17">
+          <End Type="LibraryModel.Authors" Role="Authors" Multiplicity="0..1" />
+          <End Type="LibraryModel.Collected_Works" Role="Collected_Works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Authors">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Collected_Works">
+              <PropertyRef Name="Author_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Books__Genre_Id__2180FB33">
+          <End Type="LibraryModel.Book_Genres" Role="Book_Genres" Multiplicity="0..1" />
+          <End Type="LibraryModel.Books" Role="Books" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Book_Genres">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Books">
+              <PropertyRef Name="Genre_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Collected__Book___245D67DE">
+          <End Type="LibraryModel.Books" Role="Books" Multiplicity="0..1" />
+          <End Type="LibraryModel.Collected_Works" Role="Collected_Works" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Collected_Works">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inquires__Book_I__2BFE89A6">
+          <End Type="LibraryModel.Books" Role="Books" Multiplicity="0..1" />
+          <End Type="LibraryModel.Inquires" Role="Inquires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Books">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inquires">
+              <PropertyRef Name="Book_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Client_I__282DF8C2">
+          <End Type="LibraryModel.Clients" Role="Clients" Multiplicity="0..1" />
+          <End Type="LibraryModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clients">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Client_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Inquires__Order___2CF2ADDF">
+          <End Type="LibraryModel.Orders" Role="Orders" Multiplicity="0..1" />
+          <End Type="LibraryModel.Inquires" Role="Inquires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Inquires">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Orders__Seller_I__29221CFB">
+          <End Type="LibraryModel.Sellers" Role="Sellers" Multiplicity="0..1" />
+          <End Type="LibraryModel.Orders" Role="Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sellers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="Seller_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LibraryModelContainer" CdmEntityContainer="LibraryEntities">
+          <EntitySetMapping Name="Authors">
+            <EntityTypeMapping TypeName="LibraryModel.Authors">
+              <MappingFragment StoreEntitySet="Authors">
+                <ScalarProperty Name="Author_Patronymic" ColumnName="Author_Patronymic" />
+                <ScalarProperty Name="Author_Surname" ColumnName="Author_Surname" />
+                <ScalarProperty Name="Author_Name" ColumnName="Author_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Book_Genres">
+            <EntityTypeMapping TypeName="LibraryModel.Book_Genres">
+              <MappingFragment StoreEntitySet="Book_Genres">
+                <ScalarProperty Name="Is_Deleted" ColumnName="Is_Deleted" />
+                <ScalarProperty Name="Genre_Name" ColumnName="Genre_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Books">
+            <EntityTypeMapping TypeName="LibraryModel.Books">
+              <MappingFragment StoreEntitySet="Books">
+                <ScalarProperty Name="Genre_Id" ColumnName="Genre_Id" />
+                <ScalarProperty Name="Book_Deposit" ColumnName="Book_Deposit" />
+                <ScalarProperty Name="Book_Price" ColumnName="Book_Price" />
+                <ScalarProperty Name="Book_Amount" ColumnName="Book_Amount" />
+                <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="LibraryModel.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="Client_Email" ColumnName="Client_Email" />
+                <ScalarProperty Name="CLient_Patronymic" ColumnName="CLient_Patronymic" />
+                <ScalarProperty Name="Client_Surname" ColumnName="Client_Surname" />
+                <ScalarProperty Name="Client_Name" ColumnName="Client_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Collected_Works">
+            <EntityTypeMapping TypeName="LibraryModel.Collected_Works">
+              <MappingFragment StoreEntitySet="Collected_Works">
+                <ScalarProperty Name="Author_ID" ColumnName="Author_ID" />
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inquires">
+            <EntityTypeMapping TypeName="LibraryModel.Inquires">
+              <MappingFragment StoreEntitySet="Inquires">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="LibraryModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Seller_Comment" ColumnName="Seller_Comment" />
+                <ScalarProperty Name="Deposit_Sum" ColumnName="Deposit_Sum" />
+                <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+                <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+                <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+                <ScalarProperty Name="Seller_ID" ColumnName="Seller_ID" />
+                <ScalarProperty Name="Client_ID" ColumnName="Client_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sellers">
+            <EntityTypeMapping TypeName="LibraryModel.Sellers">
+              <MappingFragment StoreEntitySet="Sellers">
+                <ScalarProperty Name="Is_Deleted" ColumnName="Is_Deleted" />
+                <ScalarProperty Name="Is_Activated" ColumnName="Is_Activated" />
+                <ScalarProperty Name="Is_Admin" ColumnName="Is_Admin" />
+                <ScalarProperty Name="Seller_Password" ColumnName="Seller_Password" />
+                <ScalarProperty Name="Seller_Email" ColumnName="Seller_Email" />
+                <ScalarProperty Name="Seller_Patronymic" ColumnName="Seller_Patronymic" />
+                <ScalarProperty Name="Seller_Surname" ColumnName="Seller_Surname" />
+                <ScalarProperty Name="Seller_Name" ColumnName="Seller_Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

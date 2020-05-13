@@ -1,0 +1,45 @@
+﻿<Window x:Class="Library.Admin_Panel"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library"
+        mc:Ignorable="d"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Admin_Panel" Height="489.394" Width="816.667">
+    <Grid Margin="0,0,2,2" Loaded="Grid_Loaded">
+        <Grid.Background>
+            <ImageBrush ImageSource="Фон регистрации.jpg"/>
+        </Grid.Background>
+        <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,163,0,0" Width="99" FontSize="30" FontFamily="Bradley Hand ITC" FontWeight="ExtraBold" Height="51"/>
+
+        <DataGrid x:Name="dgv_Sellers" ColumnWidth="*"  Height="179" VerticalAlignment="Bottom" Background="{x:Null}" Padding="0" FontSize="16" FontFamily="Bradley Hand ITC" HeadersVisibility="All" Margin="10,0" SelectedCellsChanged="dgv_Sellers_SelectedCellsChanged"/>
+        <TextBox Name="txt_User_Name" HorizontalAlignment="Left" Height="38" Margin="185,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" FontSize="30" FontFamily="Bradley Hand ITC"/>
+        <ComboBox Name="cb_Case" HorizontalAlignment="Left" Margin="413,173,0,0" VerticalAlignment="Top" Width="178" FontSize="20" FontFamily="Bradley Hand ITC" Height="28"/>
+        <Label Content="New Sellers" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,77,0,0" Width="178" FontSize="30" FontFamily="Bradley Hand ITC" FontWeight="ExtraBold" Height="51"/>
+        <Button x:Name="btn_AddSellers_Admin_Panel" Content="ADD" HorizontalAlignment="Left" Margin="636,164,0,0" VerticalAlignment="Top" Width="135" Height="45" FontSize="24" FontFamily="Bradley Hand ITC" Click="Button_Click" Background="{x:Null}" BorderBrush="Black" Foreground="Black" FontWeight="ExtraBold"/>
+        <Menu HorizontalAlignment="Left" Height="36" Margin="10,10,0,0" VerticalAlignment="Top" Width="346" IsMainMenu="True" Foreground="{x:Null}" Background="{x:Null}">
+            <MenuItem Header="Books" Click="Open_Books_Menu" Width="auto" Height="31" FontSize="20" FontFamily="Bradley Hand ITC" Foreground="Black" FontWeight="ExtraBold"/>
+            <MenuItem Header="Orders"  Width="auto" Height="31" FontSize="20" FontFamily="Bradley Hand ITC" Foreground="Black" FontWeight="ExtraBold"/>
+            <MenuItem Header="Book genre" Width="auto" Height="31" FontSize="20" FontFamily="Bradley Hand ITC" Foreground="Black" FontWeight="ExtraBold">
+                <MenuItem Header="Create Type">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Фон регистрации.jpg"/>
+                    </MenuItem.Background>
+                </MenuItem>
+                <MenuItem Header="Delete Type">
+                    <MenuItem.Background>
+                        <ImageBrush ImageSource="Фон регистрации.jpg"/>
+                    </MenuItem.Background>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+    </Grid>
+</Window>
