@@ -4,22 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a46a94e4dcb943e5baf2cb2fbb5d15c2" Name="Diagram1">
+      <Diagram DiagramId="a46a94e4dcb943e5baf2cb2fbb5d15c2" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="LibraryModel.Authors" Width="1.5" PointX="3" PointY="5.5" />
         <EntityTypeShape EntityType="LibraryModel.Book_Genres" Width="1.5" PointX="0.75" PointY="9.625" />
         <EntityTypeShape EntityType="LibraryModel.Books" Width="1.5" PointX="3" PointY="9.125" />
-        <EntityTypeShape EntityType="LibraryModel.Clients" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="LibraryModel.Clients" Width="1.5" PointX="0.75" PointY="1.5" />
         <EntityTypeShape EntityType="LibraryModel.Collected_Works" Width="1.5" PointX="5.25" PointY="9.5" />
         <EntityTypeShape EntityType="LibraryModel.Inquires" Width="1.5" PointX="5.25" PointY="1.5" />
         <EntityTypeShape EntityType="LibraryModel.Orders" Width="1.5" PointX="3" PointY="1" />
-        <EntityTypeShape EntityType="LibraryModel.Sellers" Width="1.5" PointX="0.75" PointY="1.125" />
-        <AssociationConnector Association="LibraryModel.FK__Collected__Autho__25518C17" />
-        <AssociationConnector Association="LibraryModel.FK__Books__Genre_Id__2180FB33" />
-        <AssociationConnector Association="LibraryModel.FK__Collected__Book___245D67DE" />
-        <AssociationConnector Association="LibraryModel.FK__Inquires__Book_I__2BFE89A6" />
-        <AssociationConnector Association="LibraryModel.FK__Orders__Client_I__282DF8C2" />
-        <AssociationConnector Association="LibraryModel.FK__Inquires__Order___2CF2ADDF" />
-        <AssociationConnector Association="LibraryModel.FK__Orders__Seller_I__29221CFB" />
+        <EntityTypeShape EntityType="LibraryModel.Sellers" Width="1.5" PointX="0.75" PointY="5.125" />
+        <AssociationConnector Association="LibraryModel.FK__Collected__Autho__367C1819" />
+        <AssociationConnector Association="LibraryModel.FK__Books__Genre_Id__32AB8735" />
+        <AssociationConnector Association="LibraryModel.FK__Collected__Book___3587F3E0" />
+        <AssociationConnector Association="LibraryModel.FK__Inquires__Book_I__3D2915A8" />
+        <AssociationConnector Association="LibraryModel.FK__Orders__Client_I__395884C4" />
+        <AssociationConnector Association="LibraryModel.FK__Inquires__Order___3E1D39E1" />
+        <AssociationConnector Association="LibraryModel.FK__Orders__Seller_I__3A4CA8FD" />
+        <EntityTypeShape EntityType="LibraryModel.Info_Inquires" Width="1.5" PointX="7.5" PointY="1.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

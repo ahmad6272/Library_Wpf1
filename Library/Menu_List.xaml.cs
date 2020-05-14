@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Library.Create_and_Delete_Books;
+using Library.Create_and_Delete_Book_Genres;
 
 namespace Library
 {
@@ -33,16 +33,22 @@ namespace Library
             books.Show();
         }
 
-        private void Open_Create_and_Update_Books(object sender, RoutedEventArgs e)
+        private void Open_Create_Genres(object sender, RoutedEventArgs e)
         {
-            Create_and_Update_Books create = new Create_and_Update_Books();
+            Create_Genres create = new Create_Genres();
             create.Show();
         }
 
-        private void Open_Delete_Books(object sender, RoutedEventArgs e)
+        private void Open_Delete_Genres(object sender, RoutedEventArgs e)
         {
-            Delete_Books delete = new Delete_Books();
+            Delete_Genres delete = new Delete_Genres();
             delete.Show();
+        }
+
+        private void Open_Order(object sender, RoutedEventArgs e)
+        {
+            Order order = new Order();
+            order.ShowDialog();
         }
     }
 }

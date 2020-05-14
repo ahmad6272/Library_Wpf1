@@ -1,9 +1,9 @@
-﻿<Window x:Class="Library.Create_and_Delete_Books.Delete_Books"
+﻿<Window x:Class="Library.Create_and_Delete_Book_Genres.Delete_Genres"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Library.Create_and_Delete_Books"
+        xmlns:local="clr-namespace:Library.Create_and_Delete_Book_Genres"
         mc:Ignorable="d"
          TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
@@ -17,12 +17,12 @@
         <Grid.Background>
             <ImageBrush ImageSource="/Library;component/Фон регистрации.jpg"/>
         </Grid.Background>
-        <Button x:Name="btn_Delete" Content="Delete" HorizontalAlignment="Left" Margin="98,208,0,0" VerticalAlignment="Top" Width="171" Height="45" FontSize="20" FontFamily="Bradley Hand ITC" Background="{x:Null}" BorderBrush="Black" Foreground="Black" />
-        <ComboBox Name="cb_Delete" HorizontalAlignment="Left" Margin="98,120,0,0" VerticalAlignment="Top" Width="171"
+        <Button x:Name="btn_Delete" Content="Delete" HorizontalAlignment="Left" Margin="98,208,0,0" VerticalAlignment="Top" Width="171" Height="45" FontSize="20" FontFamily="Bradley Hand ITC" Background="{x:Null}" BorderBrush="Black" Foreground="Black" Click="btn_Delete_Click" />
+        <ComboBox Name="cb_Delete" FontSize="20" FontFamily="Bradley Hand ITC" HorizontalAlignment="Left" Margin="98,120,0,0" VerticalAlignment="Top" Width="171"
                   ItemsSource="{Binding Path=Book_Genres}"
                   DisplayMemberPath="Genre_Name"
                   SelectedValuePath="ID"
-                  SelectedValue="{Binding Path=Book_Genres}" SelectionChanged="cb_Delete_SelectionChanged"/>
+                  SelectedValue="{Binding Path=Book_Genres}"/>
         <Label Content="Delete Genres" HorizontalAlignment="Left" Margin="98,62,0,0" VerticalAlignment="Top" Width="171" FontSize="20" FontFamily="Bradley Hand ITC"/>
 
     </Grid>

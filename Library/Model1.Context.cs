@@ -33,5 +33,6 @@ namespace Library
         public virtual DbSet<Inquires> Inquires { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
         public virtual DbSet<Sellers> Sellers { get; set; }
+        public virtual DbSet<Info_Inquires> Info_Inquires { get; set; }
     }
 }

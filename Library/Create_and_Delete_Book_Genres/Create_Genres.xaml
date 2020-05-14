@@ -1,0 +1,30 @@
+﻿<Window x:Class="Library.Create_and_Delete_Book_Genres.Create_Genres"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Library.Create_and_Delete_Book_Genres"
+        mc:Ignorable="d"
+         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        Title="Create_and_Update_Genres" Height="374.242" Width="645.454" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Library;component/Фон регистрации.jpg"/>
+        </Grid.Background>
+        <TextBox x:Name="txt_Create_Genre" HorizontalAlignment="Left" Height="34" Margin="39,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="229" FontSize="20" FontFamily="Bradley Hand ITC"/>
+        <Label Content="Create Genres " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="39,58,0,0" Width="229" FontSize="20" FontFamily="Bradley Hand ITC"/>
+        <DataGrid x:Name="dgv_Book_Genres" AutoGenerateColumns="False" IsReadOnly="True" ColumnWidth="*" ItemsSource="{Binding Source=Dgv_Book_Genres}" Height="333" VerticalAlignment="Bottom" Background="{x:Null}" Padding="0" FontSize="16" FontFamily="Bradley Hand ITC" HeadersVisibility="All" Margin="357,0,10,10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Genres" Binding="{Binding Genre_Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btn_Create" Content="Create Genres" HorizontalAlignment="Left" Margin="39,193,0,0" VerticalAlignment="Top" Width="229" Height="45" FontSize="20" FontFamily="Bradley Hand ITC" Background="{x:Null}" BorderBrush="Black" Foreground="Black" Click="btn_Created" />
+
+    </Grid>
+</Window>

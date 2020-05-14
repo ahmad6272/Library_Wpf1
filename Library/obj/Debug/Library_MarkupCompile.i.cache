@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\Ahmad Dadashzada\Desktop\Library\Library\obj\Debug\
+C:\Users\Ahmad Dadashzada\Desktop\Library_Wpf\Library\obj\Debug\
 Library
 none
 false
 DEBUG;TRACE
-C:\Users\Ahmad Dadashzada\Desktop\Library\Library\App.xaml
-7-1138461549
+C:\Users\Ahmad Dadashzada\Desktop\Library_Wpf\Library\App.xaml
+8-1074689984
 21750853300
-24-533797585
-20-1557657607
-Admin_Panel.xaml;Books_Menu.xaml;Create and Delete Books\Create and Update Books.xaml;Create and Delete Books\Delete Books.xaml;Login_List.xaml;Menu_List.xaml;Registration_List.xaml;
+29-1735112174
+2050486104
+Admin_Panel.xaml;Books_Menu.xaml;Create_and_Delete_Book_Genres\Create_Genres.xaml;Create_and_Delete_Book_Genres\Delete_Genres.xaml;Login_List.xaml;Menu_List.xaml;Order.xaml;Registration_List.xaml;
 
 True
 

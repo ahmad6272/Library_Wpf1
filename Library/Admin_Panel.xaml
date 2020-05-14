@@ -19,21 +19,30 @@
         </Grid.Background>
         <Label Content="Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="56,163,0,0" Width="99" FontSize="30" FontFamily="Bradley Hand ITC" FontWeight="ExtraBold" Height="51"/>
 
-        <DataGrid x:Name="dgv_Sellers" ColumnWidth="*"  Height="179" VerticalAlignment="Bottom" Background="{x:Null}" Padding="0" FontSize="16" FontFamily="Bradley Hand ITC" HeadersVisibility="All" Margin="10,0" SelectedCellsChanged="dgv_Sellers_SelectedCellsChanged"/>
+        <DataGrid x:Name="dgv_Sellers" ColumnWidth="*" IsReadOnly="True" AutoGenerateColumns="False" ItemsSource="{Binding Source=Dgv_Sellers}" Height="179" VerticalAlignment="Bottom" Background="{x:Null}" Padding="0" FontSize="16" FontFamily="Bradley Hand ITC" HeadersVisibility="All" Margin="10,0" SelectedCellsChanged="dgv_Sellers_SelectedCellsChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Seller_Name}"/>
+                <DataGridTextColumn Header="Surname" Binding="{Binding Seller_Surname}"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Seller_Email}"/>
+                <DataGridTextColumn Header="Admin" Binding="{Binding Is_Admin}"/>
+                <DataGridTextColumn Header="Activated" Binding="{Binding Is_Activated}"/>
+                <DataGridTextColumn Header="Deleted" Binding="{Binding Is_Deleted}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <TextBox Name="txt_User_Name" HorizontalAlignment="Left" Height="38" Margin="185,163,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="185" FontSize="30" FontFamily="Bradley Hand ITC"/>
         <ComboBox Name="cb_Case" HorizontalAlignment="Left" Margin="413,173,0,0" VerticalAlignment="Top" Width="178" FontSize="20" FontFamily="Bradley Hand ITC" Height="28"/>
         <Label Content="New Sellers" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="190,77,0,0" Width="178" FontSize="30" FontFamily="Bradley Hand ITC" FontWeight="ExtraBold" Height="51"/>
         <Button x:Name="btn_AddSellers_Admin_Panel" Content="ADD" HorizontalAlignment="Left" Margin="636,164,0,0" VerticalAlignment="Top" Width="135" Height="45" FontSize="24" FontFamily="Bradley Hand ITC" Click="Button_Click" Background="{x:Null}" BorderBrush="Black" Foreground="Black" FontWeight="ExtraBold"/>
         <Menu HorizontalAlignment="Left" Height="36" Margin="10,10,0,0" VerticalAlignment="Top" Width="346" IsMainMenu="True" Foreground="{x:Null}" Background="{x:Null}">
             <MenuItem Header="Books" Click="Open_Books_Menu" Width="auto" Height="31" FontSize="20" FontFamily="Bradley Hand ITC" Foreground="Black" FontWeight="ExtraBold"/>
-            <MenuItem Header="Orders"  Width="auto" Height="31" FontSize="20" FontFamily="Bradley Hand ITC" Foreground="Black" FontWeight="ExtraBold"/>
+            <MenuItem Header="Orders" Click="Open_Order" Width="auto" Height="31" FontSize="20" FontFamily="Bradley Hand ITC" Foreground="Black" FontWeight="ExtraBold"/>
             <MenuItem Header="Book genre" Width="auto" Height="31" FontSize="20" FontFamily="Bradley Hand ITC" Foreground="Black" FontWeight="ExtraBold">
-                <MenuItem Header="Create Type">
+                <MenuItem Header="Create Genre" Click="Open_Create_Genres">
                     <MenuItem.Background>
                         <ImageBrush ImageSource="Фон регистрации.jpg"/>
                     </MenuItem.Background>
                 </MenuItem>
-                <MenuItem Header="Delete Type">
+                <MenuItem Header="Delete Genre" Click="Open_Delete_Genres">
                     <MenuItem.Background>
                         <ImageBrush ImageSource="Фон регистрации.jpg"/>
                     </MenuItem.Background>

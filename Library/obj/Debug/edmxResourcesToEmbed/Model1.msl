@@ -90,5 +90,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Info_Inquires">
+      <EntityTypeMapping TypeName="LibraryModel.Info_Inquires">
+        <MappingFragment StoreEntitySet="Info_Inquires">
+          <ScalarProperty Name="Seller_Name" ColumnName="Seller_Name" />
+          <ScalarProperty Name="Total_Price" ColumnName="Total_Price" />
+          <ScalarProperty Name="Return_Date" ColumnName="Return_Date" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order_Date" />
+          <ScalarProperty Name="Book_Price" ColumnName="Book_Price" />
+          <ScalarProperty Name="Book_Deposit" ColumnName="Book_Deposit" />
+          <ScalarProperty Name="Book_Name" ColumnName="Book_Name" />
+          <ScalarProperty Name="Client_Email" ColumnName="Client_Email" />
+          <ScalarProperty Name="Client_Name" ColumnName="Client_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

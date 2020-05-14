@@ -15,7 +15,7 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Genre_Name" Type="nvarchar" MaxLength="100" />
-    <Property Name="Is_Deleted" Type="bit" />
+    <Property Name="Is_Deleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Books">
     <Key>
@@ -81,7 +81,34 @@
     <Property Name="Is_Activated" Type="bit" Nullable="false" />
     <Property Name="Is_Deleted" Type="bit" Nullable="false" />
   </EntityType>
-  <Association Name="FK__Books__Genre_Id__2180FB33">
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "Library.dbo.Info_Collected_Works" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="Info_Collected_Works">
+          <Property Name="Author_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Author_Surname" Type="nvarchar" MaxLength="100" />
+          <Property Name="Book_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Genre_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Book_Price" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="Book_Deposit" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Book_Amount" Type="int" />
+        </EntityType>-->
+  <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Library.dbo.Info_Inquires" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+  <EntityType Name="Info_Inquires">
+    <Key>
+      <PropertyRef Name="Seller_Name" />
+    </Key>
+    <Property Name="Client_Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Client_Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Book_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Book_Deposit" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Book_Price" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Order_Date" Type="date" />
+    <Property Name="Return_Date" Type="date" />
+    <Property Name="Total_Price" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Seller_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Books__Genre_Id__32AB8735">
     <End Role="Book_Genres" Type="Self.Book_Genres" Multiplicity="0..1" />
     <End Role="Books" Type="Self.Books" Multiplicity="*" />
     <ReferentialConstraint>
@@ -93,7 +120,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Collected__Autho__25518C17">
+  <Association Name="FK__Collected__Autho__367C1819">
     <End Role="Authors" Type="Self.Authors" Multiplicity="0..1" />
     <End Role="Collected_Works" Type="Self.Collected_Works" Multiplicity="*" />
     <ReferentialConstraint>
@@ -105,7 +132,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Collected__Book___245D67DE">
+  <Association Name="FK__Collected__Book___3587F3E0">
     <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
     <End Role="Collected_Works" Type="Self.Collected_Works" Multiplicity="*" />
     <ReferentialConstraint>
@@ -117,7 +144,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Inquires__Book_I__2BFE89A6">
+  <Association Name="FK__Inquires__Book_I__3D2915A8">
     <End Role="Books" Type="Self.Books" Multiplicity="0..1" />
     <End Role="Inquires" Type="Self.Inquires" Multiplicity="*" />
     <ReferentialConstraint>
@@ -129,7 +156,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Inquires__Order___2CF2ADDF">
+  <Association Name="FK__Inquires__Order___3E1D39E1">
     <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
     <End Role="Inquires" Type="Self.Inquires" Multiplicity="*" />
     <ReferentialConstraint>
@@ -141,7 +168,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__Client_I__282DF8C2">
+  <Association Name="FK__Orders__Client_I__395884C4">
     <End Role="Clients" Type="Self.Clients" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -153,7 +180,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Orders__Seller_I__29221CFB">
+  <Association Name="FK__Orders__Seller_I__3A4CA8FD">
     <End Role="Sellers" Type="Self.Sellers" Multiplicity="0..1" />
     <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
     <ReferentialConstraint>
@@ -174,31 +201,44 @@
     <EntitySet Name="Inquires" EntityType="Self.Inquires" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sellers" EntityType="Self.Sellers" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__Books__Genre_Id__2180FB33" Association="Self.FK__Books__Genre_Id__2180FB33">
+    <EntitySet Name="Info_Inquires" EntityType="Self.Info_Inquires" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Info_Inquires].[Client_Name] AS [Client_Name], 
+    [Info_Inquires].[Client_Email] AS [Client_Email], 
+    [Info_Inquires].[Book_Name] AS [Book_Name], 
+    [Info_Inquires].[Book_Deposit] AS [Book_Deposit], 
+    [Info_Inquires].[Book_Price] AS [Book_Price], 
+    [Info_Inquires].[Order_Date] AS [Order_Date], 
+    [Info_Inquires].[Return_Date] AS [Return_Date], 
+    [Info_Inquires].[Total_Price] AS [Total_Price], 
+    [Info_Inquires].[Seller_Name] AS [Seller_Name]
+    FROM [dbo].[Info_Inquires] AS [Info_Inquires]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__Books__Genre_Id__32AB8735" Association="Self.FK__Books__Genre_Id__32AB8735">
       <End Role="Book_Genres" EntitySet="Book_Genres" />
       <End Role="Books" EntitySet="Books" />
     </AssociationSet>
-    <AssociationSet Name="FK__Collected__Autho__25518C17" Association="Self.FK__Collected__Autho__25518C17">
+    <AssociationSet Name="FK__Collected__Autho__367C1819" Association="Self.FK__Collected__Autho__367C1819">
       <End Role="Authors" EntitySet="Authors" />
       <End Role="Collected_Works" EntitySet="Collected_Works" />
     </AssociationSet>
-    <AssociationSet Name="FK__Collected__Book___245D67DE" Association="Self.FK__Collected__Book___245D67DE">
+    <AssociationSet Name="FK__Collected__Book___3587F3E0" Association="Self.FK__Collected__Book___3587F3E0">
       <End Role="Books" EntitySet="Books" />
       <End Role="Collected_Works" EntitySet="Collected_Works" />
     </AssociationSet>
-    <AssociationSet Name="FK__Inquires__Book_I__2BFE89A6" Association="Self.FK__Inquires__Book_I__2BFE89A6">
+    <AssociationSet Name="FK__Inquires__Book_I__3D2915A8" Association="Self.FK__Inquires__Book_I__3D2915A8">
       <End Role="Books" EntitySet="Books" />
       <End Role="Inquires" EntitySet="Inquires" />
     </AssociationSet>
-    <AssociationSet Name="FK__Inquires__Order___2CF2ADDF" Association="Self.FK__Inquires__Order___2CF2ADDF">
+    <AssociationSet Name="FK__Inquires__Order___3E1D39E1" Association="Self.FK__Inquires__Order___3E1D39E1">
       <End Role="Orders" EntitySet="Orders" />
       <End Role="Inquires" EntitySet="Inquires" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__Client_I__282DF8C2" Association="Self.FK__Orders__Client_I__282DF8C2">
+    <AssociationSet Name="FK__Orders__Client_I__395884C4" Association="Self.FK__Orders__Client_I__395884C4">
       <End Role="Clients" EntitySet="Clients" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>
-    <AssociationSet Name="FK__Orders__Seller_I__29221CFB" Association="Self.FK__Orders__Seller_I__29221CFB">
+    <AssociationSet Name="FK__Orders__Seller_I__3A4CA8FD" Association="Self.FK__Orders__Seller_I__3A4CA8FD">
       <End Role="Sellers" EntitySet="Sellers" />
       <End Role="Orders" EntitySet="Orders" />
     </AssociationSet>

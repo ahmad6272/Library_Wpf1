@@ -22,7 +22,7 @@ namespace Library
     
         public int ID { get; set; }
         public string Genre_Name { get; set; }
-        public Nullable<bool> Is_Deleted { get; set; }
+        public bool Is_Deleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Books> Books { get; set; }

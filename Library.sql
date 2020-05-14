@@ -23,7 +23,7 @@ create table Sellers(
 create table Book_Genres(
 	ID int primary key identity,
 	Genre_Name nvarchar(100),
-	Is_Deleted bit default 0,
+	Is_Deleted bit default 0 not null,
 )
 create table Books(
 	ID int primary key identity,
@@ -66,10 +66,19 @@ create table Inquires(
 
 create view Info_Inquires
 as
-select Client_Name, Client_Email, Book_Name, Book_Deposit, Order_Date, Return_Date, Total_Price, Seller_Name  from Inquires
+select Client_Name, Client_Email, Book_Name, Book_Deposit, Book_Price Order_Date, Return_Date, Total_Price, Seller_Name  from Inquires
 join Books B on B.ID= Inquires.Book_ID
 join Orders O on O.ID= Inquires.Order_ID
 join Clients C on C.ID= O.Client_ID
 join Sellers S on S.ID = O.Seller_ID
+
+
+
+create view Info_Collected_Works
+as
+select Author_Name, Author_Surname, Book_Name, Genre_Name, Book_Price, Book_Deposit, Book_Amount from Collected_Works
+join Books B on B.ID= Collected_Works.Book_ID
+join Authors A on A.ID = Collected_Works.Author_ID
+join Book_Genres BG on BG.Genre_Name = B.Genre_Id
 
 select * from Info_Inquires

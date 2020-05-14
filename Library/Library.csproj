@@ -87,19 +87,25 @@
     <Compile Include="Book_Genres.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Cb_Genres.cs" />
     <Compile Include="Clients.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Collected_Works.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Create and Delete Books\Create and Update Books.xaml.cs">
-      <DependentUpon>Create and Update Books.xaml</DependentUpon>
+    <Compile Include="Create_and_Delete_Book_Genres\Create_Genres.xaml.cs">
+      <DependentUpon>Create_Genres.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Create and Delete Books\Delete Books.xaml.cs">
-      <DependentUpon>Delete Books.xaml</DependentUpon>
+    <Compile Include="Create_and_Delete_Book_Genres\Delete_Genres.xaml.cs">
+      <DependentUpon>Delete_Genres.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dgv_Book_Genres.cs" />
+    <Compile Include="Dgv_Sellers.cs" />
     <Compile Include="Extention\Extention.cs" />
+    <Compile Include="Info_Inquires.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Inquires.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -121,6 +127,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Order.xaml.cs">
+      <DependentUpon>Order.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Orders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -138,11 +147,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Create and Delete Books\Create and Update Books.xaml">
+    <Page Include="Create_and_Delete_Book_Genres\Create_Genres.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Create and Delete Books\Delete Books.xaml">
+    <Page Include="Create_and_Delete_Book_Genres\Delete_Genres.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +167,10 @@
       <DependentUpon>Login_List.xaml</DependentUpon>
     </Compile>
     <Page Include="Menu_List.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Order.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

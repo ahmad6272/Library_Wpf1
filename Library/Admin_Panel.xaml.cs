@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Library.Create_and_Delete_Book_Genres;
 
 namespace Library
 {
@@ -39,14 +40,27 @@ namespace Library
         }
         private void FillDataGrid()
         {
-            dgv_Sellers.ItemsSource = _libdb.Sellers.Select(s => new
+            dgv_Sellers.ItemsSource = _libdb.Sellers.Select(s => new Dgv_Sellers
             {
-                Name = s.Seller_Name,
-                Email = s.Seller_Email,
-                Admin = s.Is_Admin,
-                Active = s.Is_Activated,
-                Delete = s.Is_Deleted,
+                Seller_Name = s.Seller_Name,
+                Seller_Surname = s.Seller_Surname,
+                Seller_Email = s.Seller_Email,
+                Is_Activated = s.Is_Activated,
+                Is_Admin = s.Is_Admin,
+                Is_Deleted = s.Is_Deleted,
             }).ToList();
+        }
+
+        private void Open_Create_Genres(object sender, RoutedEventArgs e)
+        {
+            Create_Genres create = new Create_Genres();
+            create.Show();
+        }
+
+        private void Open_Delete_Genres(object sender, RoutedEventArgs e)
+        {
+            Delete_Genres delete = new Delete_Genres();
+            delete.Show();
         }
 
         private async void Button_Click(object sender, RoutedEventArgs e)
@@ -76,18 +90,25 @@ namespace Library
             }
             await _libdb.SaveChangesAsync();
             txt_User_Name.Text = " ";
+            cb_Case.Text = "";
         }
 
         private void dgv_Sellers_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            Sellers seller = (Sellers)dgv_Sellers.SelectedItem;
+            Dgv_Sellers seller = (Dgv_Sellers)dgv_Sellers.SelectedItem;
             txt_User_Name.Text = seller.Seller_Name;
         }
 
         private void Open_Books_Menu(object sender, RoutedEventArgs e)
         {
             Books_Menu books = new Books_Menu(this);
-            books.Show();;
+            books.Show();
+        }
+
+        private void Open_Order(object sender, RoutedEventArgs e)
+        {
+            Order order = new Order();
+            order.ShowDialog();
         }
     }
 }
